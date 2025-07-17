@@ -1,5 +1,6 @@
-using Serilog;
+﻿using Serilog;
 using StudentManager.API.Infrastructure.ExceptionMiddleware;
+using StudentManager.API.Infrastructure.Extensions;
 using StudentManager.Application.DependencyInjection;
 using StudentManager.Infrastructure.DependencyInjection;
 using StudentManager.Infrastructure.Persistence.Configuations;
@@ -19,10 +20,15 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+builder.Services.AddAPIServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 
+//builder.WebHost.ConfigureKestrel(options =>
+//{
+//    options.ListenAnyIP(6000); // 👈 Listen trên port 5000
+//});
 
 // builder.WebHost.UseUrls("http://0.0.0.0:80");
 
@@ -35,15 +41,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-if (app.Environment.IsProduction())
-{
-    builder.WebHost.UseUrls("http://0.0.0.0:80");
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsProduction())
+//{
+//    builder.WebHost.UseUrls("http://0.0.0.0:80");
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();

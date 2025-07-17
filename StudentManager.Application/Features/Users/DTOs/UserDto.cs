@@ -11,5 +11,7 @@ namespace StudentManager.Application.Features.User.DTOs
         public Guid UserID { get; set; }
         public string UserName { get; set; } = string.Empty;
         public string EmailAddress { get; set; } = string.Empty;
+        public string AccessToken { get; set; } = string.Empty;
+        public string RefreshToken { get; set; } = string.Empty;
     }
 }

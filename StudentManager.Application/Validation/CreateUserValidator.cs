@@ -19,6 +19,13 @@ namespace StudentManager.Application.Validation
             RuleFor(x => x.EmailAddress)
                 .NotEmpty().WithMessage("EmailAddress is required");
 
+            RuleFor(x => x.Password)
+                .NotEmpty().WithMessage("Password is required")
+                .MinimumLength(6).WithMessage("Password must be at least 6 characters long")  // Đảm bảo mật khẩu có ít nhất 6 ký tự
+                .Matches(@"[A-Z]").WithMessage("Password must contain at least one uppercase letter")  // Kiểm tra ít nhất một chữ hoa
+                .Matches(@"[0-9]").WithMessage("Password must contain at least one digit")  // Kiểm tra ít nhất một chữ số
+                .Matches(@"[\W_]").WithMessage("Password must contain at least one special character");  // Kiểm tra ít nhất một ký tự đặc biệt
+
         }
     }
 }

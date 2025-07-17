@@ -22,19 +22,13 @@ namespace StudentManager.Application.Features.User.Queries
 
         public async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserByID(Guid.NewGuid());
+            var user = await _userRepository.GetUserByID(request.UserID);
 
             if (user == null)
             {
                 throw new KeyNotFoundException($"User with ID {request.UserID} not found.");
             }
             var response = _mapper.Map<UserDto>(user);
-            //var response = new UserDto()
-            //{
-            //    UserID = user.UserID,
-            //    UserName = user.UserName,
-            //    EmailAddress = user.EmailAddress
-            //};
             return response;
         }
     }

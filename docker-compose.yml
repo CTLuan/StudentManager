@@ -11,7 +11,7 @@ services:
       - sqlserver
     environment:
       # - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=StudentManagerDb;User ID=sa;Password=sa@123;TrustServerCertificate=True;
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=StudentManagerDb;User ID=sa;Password=sa@123;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=studentmanager.cpe0cy0uu3ri.ap-southeast-2.rds.amazonaws.com,1433;Database=DBTest;User ID=admin;Password=B2ik5wqX8BNIKo6;TrustServerCertificate=True;
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest

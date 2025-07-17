@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentManager.Application\StudentManager.Application.csproj" />
+    <ProjectReference Include="..\StudentManager.Domain\StudentManager.Domain.csproj" />
+    <ProjectReference Include="..\StudentManager.Infrastructure\StudentManager.Infrastructure.csproj" />
+    <ProjectReference Include="..\StudentManager.Shared\StudentManager.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

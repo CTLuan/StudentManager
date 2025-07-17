@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudentManager.Domain\StudentManager.Domain.csproj" />
+    <ProjectReference Include="..\StudentManager.Shared\StudentManager.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Features\Auth\DTOs\" />
+    <Folder Include="Features\Auth\Command\" />
   </ItemGroup>
 
   <ItemGroup>

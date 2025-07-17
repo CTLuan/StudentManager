@@ -7,6 +7,7 @@ using StudentManager.Domain.Interfaces;
 using StudentManager.Domain.Entities;
 using StudentManager.Infrastructure.Persistence.Context;
 using StudentManager.Shared.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace StudentManager.Infrastructure.Persistence.Implementation
 {
@@ -32,19 +33,35 @@ namespace StudentManager.Infrastructure.Persistence.Implementation
                 throw ErrorCatalog.BadRequest;
                 throw new NotImplementedException();
             }
-
         }
 
-        public Task<User> GetUserByID(Guid UserID)
+        public async Task<User> GetUserByEmailAddress(string EmailAddress)
         {
-            var result = new User()
-            {
-                UserID = Guid.NewGuid(),
-                UserName = "TestUser",
-                EmailAddress = "usertest@gmail.com"
-            };
+            var user = await _db.Users.Where(x => x.EmailAddress == EmailAddress).FirstOrDefaultAsync();
+            return user;
+        }
 
-            return Task.FromResult(result);
+        public async Task<User> GetUserByID(Guid UserID)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(x => x.UserID == UserID);
+            return user;
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            var result = await _db.Users.ToListAsync();
+            return result;
+        }
+
+        public async Task<bool> UpdateUser(User User)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(x => x.UserID == User.UserID);
+            if (user != null)
+            {
+                _db.Users.Update(user);
+                return true;
+            }
+            return false;
         }
     }
 }

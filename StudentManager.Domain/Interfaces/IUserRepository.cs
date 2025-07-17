@@ -10,6 +10,9 @@ namespace StudentManager.Domain.Interfaces
     public interface IUserRepository
     {
         Task<User> GetUserByID(Guid UserID);
-        Task<bool> CreateUser(User Request);
+        Task<bool> UpdateUser(User User);
+        Task<User> GetUserByEmailAddress(string EmailAddress);
+        Task<bool> CreateUser(User Request); 
+        Task<IEnumerable<User>> GetUsers();
     }
 }
