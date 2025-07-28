@@ -9,6 +9,6 @@ namespace StudentManager.Domain.Interfaces
 {
     public interface IUserRoleRepository
     {
-        Task<bool> CreateUserRole(UserRole UserRole);
+        //Task<bool> CreateUserRole(UserRole UserRole);
     }
 }

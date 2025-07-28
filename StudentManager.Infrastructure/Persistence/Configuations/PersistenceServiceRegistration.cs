@@ -20,7 +20,11 @@ namespace StudentManager.Infrastructure.Persistence.Configuations
             //services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddDbContext<DBContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                sqlServerOptions =>
+                {
+                    sqlServerOptions.EnableRetryOnFailure(); // 👈 Thêm dòng này
+                }));
 
             return services;
         }

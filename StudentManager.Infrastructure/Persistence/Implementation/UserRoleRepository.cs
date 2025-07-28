@@ -21,18 +21,18 @@ namespace StudentManager.Infrastructure.Persistence.Implementation
             _db = db;
         }
 
-        public async Task<bool> CreateUserRole(UserRole UserRole)
-        {
-            try
-            {
-                await _db.UserRoles.AddAsync(UserRole);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+        //public async Task<bool> CreateUserRole(UserRole UserRole)
+        //{
+        //    try
+        //    {
+        //        await _db.UserRoles.AddAsync(UserRole);
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
             
-        }
+        //}
     }
 }

@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace StudentManager.Domain.Entities
 {
-    public class UserRole
+    public class User_Department
     {
         [Key]
+        public Guid UserDepartmentID { get; set; }
         public Guid UserID { get; set; }
-        public User User { get; set; } = new User();
-        public Guid RoleID { get; set; }
-        public Role Role { get; set; } = new Role();
+        public User? Users { get; set; }
+        public Guid DepartmentID { get; set; }
+        public Department? Departments { get; set; }
     }
 }

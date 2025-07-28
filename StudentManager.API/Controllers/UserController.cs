@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using StudentManager.Application.Features.User.Queries;
 using StudentManager.Application.Features.Users.Command;
 using StudentManager.Application.Features.Users.Queries;
+using StudentManager.Infrastructure.Persistence.Implementation;
+using System.Security.Claims;
 
 namespace StudentManager.API.Controllers
 {
@@ -28,7 +30,7 @@ namespace StudentManager.API.Controllers
         }
 
         [HttpPost("CreateUser")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> CreateUser([FromForm] CreateUserCommand command)
         {
             var user = await _mediator.Send(command);
@@ -37,11 +39,20 @@ namespace StudentManager.API.Controllers
 
         [HttpGet("GetAllUsers")]
         [Authorize]
+        //[Authorize]
         public async Task<IActionResult> GetAllUsers()
         {
             var result = await _mediator.Send(new GetUsersQuery());
             return Ok(result);
         }
 
+        [HttpGet("get-department-by-user")]
+        [Authorize]
+        //[Authorize]
+        public async Task<IActionResult> GetDepartmentByUserID([FromQuery] GetPermissionByUserQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
     }
 }

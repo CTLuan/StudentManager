@@ -31,15 +31,24 @@ namespace StudentManager.Infrastructure.Persistence.Implementation
             return Role;
         }
 
-        public async Task<List<Role>> GetRoleById(Guid Id)
+        public async Task<List<Role>> GetRoleById(Guid UserID)
         {
-            var role = await _db.Users
-                        .Where(x => x.UserID == Id)
-                        .Include(x => x.UserRoles)
-                        .ThenInclude(ur => ur.Role)
-                        .SelectMany(u => u.UserRoles)
-                        .Select(ur => ur.Role)
-                        .ToListAsync();
+            //var role = await _db.Users
+            //            .Where(x => x.UserID == Id)
+            //            .Include(x => x.UserRoles)
+            //            .ThenInclude(ur => ur.Role)
+            //            .SelectMany(u => u.UserRoles)
+            //            .Select(ur => ur.Role)
+            //            .ToListAsync();
+
+            //return role;
+
+            var role = await _db.User_Departments
+                                    .Where(ud => ud.UserID == UserID)
+                                    .SelectMany(ud => ud.Departments.Department_Positions)
+                                    .SelectMany(dp => dp.Positions.Position_Roles)
+                                    .Select(pr => pr.Role)
+                                    .ToListAsync();
 
             return role;
         }
@@ -48,6 +57,17 @@ namespace StudentManager.Infrastructure.Persistence.Implementation
         {
             var role = await _db.Roles.FirstOrDefaultAsync(x => x.RoleName == RoleName);
             return role;
+        }
+
+        public Task<List<Role>> GetRoleByUserID(Guid UserID)
+        {
+            var roles = _db.User_Departments
+                                    .Where(ud => ud.UserID == UserID)
+                                    .SelectMany(ud => ud.Departments.Department_Positions)
+                                    .SelectMany(dp => dp.Positions.Position_Roles)
+                                    .Select(pr => pr.Role)
+                                    .ToListAsync();
+            return roles;
         }
 
         public async Task<bool> UpdateRole(Role Role)

@@ -21,6 +21,9 @@ namespace StudentManager.Infrastructure.DependencyInjection
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IPassword, PasswordService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IActionRepository, ActionRepository>();
+            services.AddScoped<IStudentRegistrationRepository, StudentRegistrationRepository>();
             return services;
         }
     }

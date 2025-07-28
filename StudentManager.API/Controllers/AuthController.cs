@@ -25,12 +25,10 @@ namespace StudentManager.API.Controllers
         }
 
         [HttpPost("RefreshToken")]
-        [Authorize]
         public async Task<IActionResult> RefreshToken([FromForm] RefreshTokenQuery query)
         {
             var result = await _mediator.Send(query);
             return Ok(result);
         }
-
     }
 }

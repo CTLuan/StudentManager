@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using StudentManager.Application.Behavior;
 

@@ -14,5 +14,6 @@ namespace StudentManager.Domain.Interfaces
         Task<Role> DeleteRole(Role Role);
         Task<List<Role>> GetRoleById(Guid Id);
         Task<Role> GetRoleByName(string RoleName);
+        Task<List<Role>> GetRoleByUserID(Guid UserID);
     }
 }

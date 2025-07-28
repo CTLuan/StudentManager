@@ -14,7 +14,7 @@ using StudentManager.Shared.Contants;
 
 namespace StudentManager.Application.Features.Users.Command
 {
-    public class CreateUserCommandHandle : IRequestHandler<CreateUserCommand, ApiResponse<UserDto>>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponse<UserDto>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
@@ -23,7 +23,7 @@ namespace StudentManager.Application.Features.Users.Command
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPassword _password;
 
-        public CreateUserCommandHandle(IUserRepository userRepository, IMapper mapper, IUnitOfWork unitOfWork, 
+        public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper, IUnitOfWork unitOfWork, 
                                        IRoleRepository roleRepository, IUserRoleRepository userRoleRepository,
                                        IPassword password)
         {
@@ -49,12 +49,12 @@ namespace StudentManager.Application.Features.Users.Command
             await _userRepository.CreateUser(userRequest);
 
             var roleGuest = await _roleRepository.GetRoleByName("Guest");
-            var userRole = new UserRole()
-            {
-                UserID = userRequest.UserID,
-                RoleID = roleGuest.RoleID
-            };
-            var createUserRole = await _userRoleRepository.CreateUserRole(userRole);
+            //var userRole = new UserRole()
+            //{
+            //    UserID = userRequest.UserID,
+            //    RoleID = roleGuest.RoleID
+            //};
+            //var createUserRole = await _userRoleRepository.CreateUserRole(userRole);
 
             await _unitOfWork.SaveChangesAsync();
             var response = _mapper.Map<UserDto>(userRequest);

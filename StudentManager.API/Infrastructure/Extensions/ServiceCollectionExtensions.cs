@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using StudentManager.API.Infrastructure.ExceptionMiddleware;
 using StudentManager.Shared.Contants;
+using System.Security.Claims;
 using System.Text;
 
 namespace StudentManager.API.Infrastructure.Extensions
@@ -28,10 +29,11 @@ namespace StudentManager.API.Infrastructure.Extensions
                         ValidateLifetime = true,
                         ValidIssuer = jwtSettings.Issuer,
                         ValidAudience = jwtSettings.Audience,
+                        RoleClaimType = ClaimTypes.Role,
+                        NameClaimType = ClaimTypes.Name,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
                     };
                 });
-
 
             services.AddSwaggerGen(c =>
             {
@@ -59,6 +61,11 @@ namespace StudentManager.API.Infrastructure.Extensions
                         }
                     });
             });
+
+            //services.AddAuthorization(option =>
+            //{
+            //    option.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            //});
 
             return services;
         }
