@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StudentManager.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -328,7 +328,7 @@ namespace StudentManager.Infrastructure.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserID", "Active", "CreateOn", "EmailAddress", "Password", "RefreshToken", "UserName" },
-                values: new object[] { new Guid("9e666a5d-8ba2-42e2-8dc4-fa560737c6a4"), true, new DateTime(2025, 7, 24, 17, 2, 18, 69, DateTimeKind.Local).AddTicks(4594), "admin@gmail.com", "$2a$12$fMOWcOJCvLJwyXiV7Bnd1uR8eWB3vaXyKFnj8p6QUOAl3agAcsHle", "", "Admin" });
+                values: new object[] { new Guid("9e666a5d-8ba2-42e2-8dc4-fa560737c6a4"), true, new DateTime(2025, 7, 29, 15, 21, 48, 648, DateTimeKind.Local).AddTicks(4412), "admin@gmail.com", "$2a$12$fMOWcOJCvLJwyXiV7Bnd1uR8eWB3vaXyKFnj8p6QUOAl3agAcsHle", "", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Department_Positions",

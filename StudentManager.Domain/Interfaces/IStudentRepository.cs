@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentManager.Domain.Interfaces
 {
-    public interface IStudentRepositoty
+    public interface IStudentRepository
     {
         Task<bool> CreateStudent(Student Student);
         Task<bool> UpdateStudent(Student Student);

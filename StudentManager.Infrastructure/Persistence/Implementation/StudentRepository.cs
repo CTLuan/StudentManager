@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace StudentManager.Infrastructure.Persistence.Implementation
 {
-    public class StudentRepositoty : IStudentRepositoty
+    public class StudentRepository : IStudentRepository
     {
         private readonly DBContext _db;
 
-        public StudentRepositoty(DBContext db)
+        public StudentRepository(DBContext db)
         {
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }

@@ -21,13 +21,9 @@ namespace StudentManager.API.Controllers
         {
             var result = await _mediator.Send(command);
             if (result != null)
-            {
                 return Ok(result);
-            }
             else
-            {
                 return BadRequest(new { Message = "Failed to create student registration." });
-            }
         }
-    }
+    }   
 }

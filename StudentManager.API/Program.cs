@@ -1,4 +1,7 @@
 ﻿using Serilog;
+using StudentManager.API.GraphQL.Queries;
+using StudentManager.API.GraphQL;
+using StudentManager.API.Hubs;
 using StudentManager.API.Infrastructure.ExceptionMiddleware;
 using StudentManager.API.Infrastructure.Extensions;
 using StudentManager.Application.DependencyInjection;
@@ -32,6 +35,14 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 
 // builder.WebHost.UseUrls("http://0.0.0.0:80");
 
+
+builder.Services
+    .AddGraphQLServer()
+    .ModifyOptions(opt => opt.DefaultBindingBehavior = BindingBehavior.Implicit) // optional
+    //.SetNamingConventions(NamingConventions.CamelCase) // 👈 Thêm dòng này
+    .AddQueryType<Query>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -48,6 +59,9 @@ if (app.Environment.IsDevelopment())
 //    app.UseSwaggerUI();
 //}
 
+//app.UseGraphQL<ISchema>();
+//app.UseGraphQLPlayground();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -56,5 +70,13 @@ app.UseAuthorization();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
+//app.MapHub<ChatHub>("/chatHub");
+
+app.MapGraphQL();
 
 app.Run();
+
+//public class Query
+//{
+//    public string Hello() => "world";
+//}

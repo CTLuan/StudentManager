@@ -24,6 +24,7 @@ namespace StudentManager.Infrastructure.Persistence.Context
         public DbSet<Domain.Entities.Class> Classes { get; set; }
         public DbSet<StudentRegistration> StudentRegistrations { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<ChatMessages> ChatMessages { get; set; }
 
 
         public DBContext(DbContextOptions<DBContext> options) : base(options) { }

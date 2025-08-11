@@ -22,6 +22,7 @@ namespace StudentManager.Application.Mapping
             CreateMap<User, CreateUserCommand>();
             CreateMap<CreateStudentRegistrationCommand, StudentRegistration>();
             CreateMap<StudentRegistration, StudentRegistrationDto>();
+            CreateMap<StudentRegistration, Student>();
         }
     }
 }

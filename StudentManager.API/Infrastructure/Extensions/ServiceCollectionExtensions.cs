@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using StudentManager.API.GraphQL.Queries;
+using StudentManager.API.GraphQL;
 using StudentManager.API.Infrastructure.ExceptionMiddleware;
 using StudentManager.Shared.Contants;
 using System.Security.Claims;
@@ -66,6 +68,22 @@ namespace StudentManager.API.Infrastructure.Extensions
             //{
             //    option.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
             //});
+              
+            services.AddSignalR();
+
+
+            //services.AddScoped<UserQuery>();
+            //services.AddScoped<UserType>();
+            //services.AddScoped<ISchema, AppSchema>();
+
+            //services
+            //    .AddGraphQL((options) =>
+            //    {
+            //        // Tuỳ chọn: Bật hoặc tắt cấu hình
+            //        options.RequestServices = true; // Cho phép DI trong resolver
+            //    })
+            //    .AddSystemTextJson() // Dùng System.Text.Json thay vì Newtonsoft.Json
+            //    .AddGraphTypes(typeof(AppSchema)); // Không cần chỉ định ServiceLifetime nếu mặc định là Scoped
 
             return services;
         }

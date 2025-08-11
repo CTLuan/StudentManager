@@ -12,8 +12,8 @@ using StudentManager.Infrastructure.Persistence.Context;
 namespace StudentManager.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20250724100218_Initial")]
-    partial class Initial
+    [Migration("20250729082152_Initial-Create")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -480,7 +480,7 @@ namespace StudentManager.Infrastructure.Persistence.Migrations
                         {
                             UserID = new Guid("9e666a5d-8ba2-42e2-8dc4-fa560737c6a4"),
                             Active = true,
-                            CreateOn = new DateTime(2025, 7, 24, 17, 2, 18, 69, DateTimeKind.Local).AddTicks(4594),
+                            CreateOn = new DateTime(2025, 7, 29, 15, 21, 48, 648, DateTimeKind.Local).AddTicks(4412),
                             EmailAddress = "admin@gmail.com",
                             Password = "$2a$12$fMOWcOJCvLJwyXiV7Bnd1uR8eWB3vaXyKFnj8p6QUOAl3agAcsHle",
                             RefreshToken = "",

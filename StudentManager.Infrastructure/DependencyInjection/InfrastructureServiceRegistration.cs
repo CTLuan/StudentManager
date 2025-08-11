@@ -24,6 +24,7 @@ namespace StudentManager.Infrastructure.DependencyInjection
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IActionRepository, ActionRepository>();
             services.AddScoped<IStudentRegistrationRepository, StudentRegistrationRepository>();
+            services.AddScoped<IChatRepository, ChatRepository>();
             return services;
         }
     }

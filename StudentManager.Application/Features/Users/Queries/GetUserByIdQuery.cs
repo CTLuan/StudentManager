@@ -8,8 +8,8 @@ using StudentManager.Application.Features.User.DTOs;
 
 namespace StudentManager.Application.Features.User.Queries
 {
-    public class GetUserByIdQuery : IRequest<UserDto>
+    public record GetUserByIdQuery(Guid UserID) : IRequest<UserDto>
     {
-        public Guid UserID { get; set; }
+        //public Guid UserID { get; set; }
     }
 }
